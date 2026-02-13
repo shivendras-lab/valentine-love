@@ -1,51 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For Someone Special ❤️</title>
+<title>For My Love ❤️</title>
+
 <style>
-body{
-  margin:0;
-  background: linear-gradient(to right, #ff758c, #ff7eb3);
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  font-family: Arial;
-  color:white;
+body {
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #ff4e50, #fc913a, #ff758c, #ff7eb3);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
 }
 
-.box{
-  background:rgba(0,0,0,0.4);
-  padding:40px;
-  border-radius:20px;
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
-button{
-  padding:10px 20px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
+.container {
+  width: 80%;
+  animation: fadeIn 4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+  line-height: 1.6;
 }
 </style>
 </head>
 
 <body>
 
-<div class="box">
-<h1>Hey ❤️</h1>
-<p>Click below to unlock something special...</p>
-<button onclick="showLove()">Unlock 💌</button>
-<p id="message" style="margin-top:20px;font-size:20px;"></p>
+<div class="container">
+<h1>Happy Valentine's Day ❤️</h1>
+
+<p>
+My Love,<br><br>
+
+From the day you entered my life, everything changed beautifully.  
+You are the smile I wait for, the happiness I pray for,  
+and the peace my heart searches for every single day. 💕<br><br>
+
+You are not just a part of my life —  
+you are the best chapter of my story. 📖✨<br><br>
+
+If life is a program,  
+then you are my favorite function,  
+my infinite loop of happiness,  
+my permanent connection without errors. 🔐❤️<br><br>
+
+No bugs, no crashes —  
+just pure love running smoothly forever. 💞<br><br>
+
+I promise to stand beside you,  
+support you,  
+and love you more with every passing day.<br><br>
+
+Forever yours ❤️
+</p>
+
 </div>
 
-<script>
-function showLove(){
-  document.getElementById("message").innerHTML =
-  "Happy Valentine's Day My Love ❤️<br>You are my favorite person in this world 🌍<br>System permanently connected to YOU 💕";
-}
-</script>
+<!-- Background Music -->
+<audio autoplay loop>
+  <source src="ishq.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
