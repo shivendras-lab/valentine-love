@@ -6,27 +6,72 @@
 <style>
 body {
   margin: 0;
-  height: 100vh;
   overflow: hidden;
-  background: linear-gradient(-45deg, #ff4e50, #fc913a, #ff758c, #ff7eb3);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+  font-family: 'Segoe UI', sans-serif;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+/* Loading Screen */
+#loadingScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,#ff416c,#ff4b2b);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
 }
 
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-.container {
+.progress-container {
   width: 80%;
+  height: 30px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 20px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: white;
+  border-radius: 20px;
+  transition: width 0.4s;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Main Screen */
+#mainContent {
+  display: none;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background: linear-gradient(-45deg,#ff4e50,#fc913a,#ff758c,#ff7eb3);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+@keyframes gradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.message {
+  margin-top: 60px;
   animation: fadeIn 4s ease-in-out;
 }
 
@@ -35,54 +80,102 @@ body {
   to {opacity: 1;}
 }
 
-h1 {
-  font-size: 40px;
+h1 { font-size: 40px; }
+p { font-size: 20px; line-height: 1.6; }
+
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  color: rgba(255,255,255,0.8);
+  font-size: 20px;
+  animation: float 6s linear infinite;
 }
 
-p {
-  font-size: 20px;
-  line-height: 1.6;
+@keyframes float {
+  from {
+    transform: translateY(100vh);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
-<h1>Happy Valentine's Day ❤️</h1>
-
-<p>
-My Love,<br><br>
-
-From the day you entered my life, everything changed beautifully.  
-You are the smile I wait for, the happiness I pray for,  
-and the peace my heart searches for every single day. 💕<br><br>
-
-You are not just a part of my life —  
-you are the best chapter of my story. 📖✨<br><br>
-
-If life is a program,  
-then you are my favorite function,  
-my infinite loop of happiness,  
-my permanent connection without errors. 🔐❤️<br><br>
-
-No bugs, no crashes —  
-just pure love running smoothly forever. 💞<br><br>
-
-I promise to stand beside you,  
-support you,  
-and love you more with every passing day.<br><br>
-
-Forever yours ❤️
-</p>
-
+<!-- Loading Screen -->
+<div id="loadingScreen">
+  <h1>Loading Love...</h1>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <button onclick="fillLove()">Fill Love ❤️</button>
 </div>
 
-<iframe width="0" height="0" 
-src="https://www.youtube.com/embed/N2cPyl83tkQ?si?autoplay=1&loop=1" 
-frameborder="0" allow="autoplay">
-</iframe>
+<!-- Main Content -->
+<div id="mainContent">
+  <div class="message">
+    <h1>Happy Valentine's Day ❤️</h1>
+    <p>
+    My Love,<br><br>
+    From the moment you entered my life, everything became brighter.  
+    You are my happiness, my comfort, my safe place. 💕<br><br>
+    In this world full of chaos, you are my peace.  
+    In this life full of uncertainty, you are my forever. 💖<br><br>
+    If my heart was a program,  
+    it would run only one command:<br>
+    <b>love(you) forever;</b> ❤️<br><br>
+    No errors, no exceptions —  
+    just endless love and infinite happiness. ♾️💕<br><br>
+    I promise to stand beside you,  
+    support you,  
+    and love you more every single day.<br><br>
+    Forever Yours ❤️
+    </p>
+  </div>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" src="love.mp3" loop></audio>
+
+<script>
+function fillLove() {
+  let bar = document.getElementById("progressBar");
+  let width = 0;
+  let music = document.getElementById("bgMusic");
+
+  let interval = setInterval(function() {
+    if (width >= 100) {
+      clearInterval(interval);
+      document.getElementById("loadingScreen").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+      music.play();
+      createHearts();
+    } else {
+      width++;
+      bar.style.width = width + "%";
+    }
+  }, 40);
+}
+
+function createHearts() {
+  setInterval(function() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 300);
+}
+</script>
 
 </body>
 </html>
-
