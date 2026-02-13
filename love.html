@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For Someone Special ❤️</title>
+<style>
+body{
+  margin:0;
+  background: linear-gradient(to right, #ff758c, #ff7eb3);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-family: Arial;
+  color:white;
+}
+
+.box{
+  background:rgba(0,0,0,0.4);
+  padding:40px;
+  border-radius:20px;
+}
+
+button{
+  padding:10px 20px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+<h1>Hey ❤️</h1>
+<p>Click below to unlock something special...</p>
+<button onclick="showLove()">Unlock 💌</button>
+<p id="message" style="margin-top:20px;font-size:20px;"></p>
+</div>
+
+<script>
+function showLove(){
+  document.getElementById("message").innerHTML =
+  "Happy Valentine's Day My Love ❤️<br>You are my favorite person in this world 🌍<br>System permanently connected to YOU 💕";
+}
+</script>
+
+</body>
+</html>
